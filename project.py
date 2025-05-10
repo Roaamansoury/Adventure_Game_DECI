@@ -1,6 +1,10 @@
 import time
 import random
 
+purpleDoorEntry = False
+silverDoorEntry = False
+greenDoorEntry = False
+
 def print_pause(text,pause=2):
     print(text)
     time.sleep(pause)
@@ -22,11 +26,14 @@ def random_weapon():
 weapon= random_weapon()
 
 def purple_door():
+    global purpleDoorEntry
     print_pause("You enter through the purple door")
     print("you look around and you find a",weapon,"that you can use to defend yourself with against the",monster)
     print_pause("you take it and return back to the hallway you were in")
+    purpleDoorEntry = True
 
 def silver_door():
+        
         print_pause("you enter through the silver door")
         print_pause("You search the room until you find a big old-fashioned key that you thought could be useful")
         print_pause("you take it and return to the hallway") 
@@ -38,10 +45,13 @@ def choose_door():
     print_pause("what would you like to do")
     while True:
       try:
-            first_choice= (int(input("[Enter 1,2 or 3]")))
+            first_choice= (int(input("Enter (1,2 or 3): ")))
             if first_choice==1:
-                print("you open the purple door and go in")
-                purple_door()
+                if not purpleDoorEntry:
+                    print("you open the purple door and go in")
+                    purple_door()
+                else:
+                    print("you already eneterd the room, nothing is here")
                 return_to_hallway()
                 break
             elif first_choice==2:
