@@ -1,20 +1,24 @@
 import time
+import random
+
 def print_pause(text,pause=2):
     print(text)
     time.sleep(pause)
 
 monsters= ["goblin","zombie","vampire","werewolf","troll",
           "giant spider","mummy","ghost","Evil fairy","Demon"]
-import random
+
 def random_monster():
     return random.choice(monsters)   
+
 monster= random_monster()
 
 weapons=["sword","axe","spear","hammer","wrench","baseball ball",
          "crowbar","shovel","metal pipe","plank of wood"]
-import random
+
 def random_weapon():
     return random.choice(weapons)
+
 weapon= random_weapon()
 
 def purple_door():
@@ -23,9 +27,9 @@ def purple_door():
     print_pause("you take it and return back to the hallway you were in")
 
 def silver_door():
-    print_pause("you enter through the silver door")
-    print_pause("you search the room until you find a big old-fashioned key that you thought could be useful")
-    print_pause("you take it and return to thr hallway")  
+        print_pause("you enter through the silver door")
+        print_pause("You search the room until you find a big old-fashioned key that you thought could be useful")
+        print_pause("you take it and return to the hallway") 
 
 def return_to_hallway():
     choose_door()
@@ -52,12 +56,10 @@ def choose_door():
       except ValueError: 
                print("Invalid.")
 
-
-print("You find yourself standing in the hallway of an old house and you hear the sound of a" ,monster, "coming from somewhere in the house")
+print("You find yourself standing in the hallway of an old house and you hear the sound of" \
+" a" ,monster, "coming from somewhere in the house")
 print_pause("you look around and you find a purple door, a silver door and a green door")
 print_pause("Enter 1 to open the purple door")
 print_pause("Enter 2 to open the silver door")
 print_pause("Enter 3 to open the green door")
 choose_door()
-
-
