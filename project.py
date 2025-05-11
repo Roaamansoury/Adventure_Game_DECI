@@ -1,9 +1,8 @@
 import time
 import random
 
-purpleDoorEntry = False
-silverDoorEntry = False
-greenDoorEntry = False
+whiteDoorEntry = False
+woodenChestEntry = False
 
 def print_pause(text,pause=2):
     print(text)
@@ -25,21 +24,45 @@ def random_weapon():
 
 weapon= random_weapon()
 
-def purple_door():
-    global purpleDoorEntry
-    print_pause("You enter through the purple door")
+def white_door():
+    global whiteDoorEntry
+    print_pause("You enter through the white door")
     print("you look around and you find a",weapon,"that you can use to defend yourself with against the",monster)
     print_pause("you take it and return back to the hallway you were in")
-    purpleDoorEntry = True
+    whiteDoorEntry= True
 
-def silver_door():
-        
-        print_pause("you enter through the silver door")
-        print_pause("You search the room until you find a big old-fashioned key that you thought could be useful")
-        print_pause("you take it and return to the hallway") 
+def wooden_chest():
+     global woodenChestEntry
+     print_pause("You search it until you find a big old-fashioned key that you thought could be useful")
+     print_pause("you take it and return to the hallway")
+     woodenChestEntry= True 
 
 def return_to_hallway():
     choose_door()
+
+def basement_fight():
+    print_pause("would you like to fight or run back up to the hallway?")
+    print("Enter 1 to fight the",monster,)
+    print_pause("Enter 2 to run away")
+    fight_choice =(int(input("(Enter 1 or 2):")))
+    if fight_choice==1: 
+        if not whiteDoorEntry and not woodenChestEntry:
+            print("you fight it but with no weapon or key to the door you can't escape and the",monster,"kills you")  
+            print_pause("game ends")
+        elif not whiteDoorEntry:
+            print("you don't have a weapon and the",monster,"kills you")
+            print_pause("game ends")
+        elif not woodenChestEntry:
+            print("you killed the monster but you don't have a key to open the door and escape")
+            print_pause("you go back to the hallway")
+            return_to_hallway()
+        else:
+            print("you kill the monster and escape")        
+            print("game ends")
+    elif fight_choice==2:
+        return_to_hallway()
+    else:
+        print(int(input("(Enter 1,2):")))     
 
 def choose_door():
     print_pause("what would you like to do")
@@ -47,29 +70,34 @@ def choose_door():
       try:
             first_choice= (int(input("Enter (1,2 or 3): ")))
             if first_choice==1:
-                if not purpleDoorEntry:
-                    print("you open the purple door and go in")
-                    purple_door()
+                if not whiteDoorEntry:
+                    print("you open the white door and go in")
+                    white_door()
                 else:
-                    print("you already eneterd the room, nothing is here")
+                    print("you already entered the room, nothing is here")
                 return_to_hallway()
                 break
             elif first_choice==2:
-                print("You open the silver door and go in")
-                silver_door()
+                if not woodenChestEntry:
+                    print("You open the wooden chest and check what is inside")
+                    wooden_chest()
+                else:
+                    print("there is nothing else here")
                 return_to_hallway()
                 break   
             elif first_choice==3:
-                print("you enter through the green door")     
+                print("you enter the basement and go down stairs")
+                print("you come face to face with the",monster,"and behind it a door to escape")  
+                basement_fight()
                 break
             else: print(int(input("Enter 1,2 or 3")))
       except ValueError: 
                print("Invalid.")
 
-print("You find yourself standing in the hallway of an old house and you hear the sound of" \
-" a" ,monster, "coming from somewhere in the house")
-print_pause("you look around and you find a purple door, a silver door and a green door")
-print_pause("Enter 1 to open the purple door")
-print_pause("Enter 2 to open the silver door")
-print_pause("Enter 3 to open the green door")
+print("You find yourself standing in the hallway of an old house and you hear" \
+" the sound of a" ,monster, "coming from somewhere in the house")
+print_pause("you look around and you find a plain white door, a wooden chest and a door leading to the basement")
+print_pause("Enter 1 to open the white door")
+print_pause("Enter 2 to check the wooden chest")
+print_pause("Enter 3 to open do down the basement")
 choose_door()
