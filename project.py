@@ -48,6 +48,7 @@ def return_to_hallway():
     choose_door()
 
 def basement_fight():
+    global score
     print_pause("would you like to fight or run back up to the hallway?")
     print("Enter 1 to fight the",monster,)
     print_pause("Enter 2 to run away")
@@ -56,27 +57,22 @@ def basement_fight():
         if not whiteDoorEntry and not woodenChestEntry:
             print("you fight it but with no weapon or key to the door")
             print("you can't escape and the",monster,"kills you")
-            global score
             score-=30
             print("[you lost 30 points!]")
             print_pause("game ends")
         elif not whiteDoorEntry:
             print("You have the key to escape")
-            global score
             score+=25
             print("[you gained 25 points for having the key!]")
             print("but you don't have a weapon and the",monster,"kills you")
-            global score
             score-=15
             print("[you lost 15 points for not having a weapon]")
             print_pause("game ends")
         elif not woodenChestEntry:
             print("you use your",weapon,"to kill the monster")
-            global score
             score+=25
             print("[you gained 25 points for killing the monster!]")
             print_pause("but don't have a key to open the door and escape!")
-            global score
             score-=15
             print("[you lost 15 points for not having the key]")
             print_pause("you go back to the hallway")
@@ -84,7 +80,6 @@ def basement_fight():
         else:
             print("with your",weapon,"you hit the monster and kill it")
             print_pause("you use the key you got to escape through the door and out of the house")
-            global score
             score+=40
             print("you gained 40 points!")
             print("you have a total score of",score,"points!")      
