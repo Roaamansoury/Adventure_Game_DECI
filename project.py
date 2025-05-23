@@ -13,7 +13,7 @@ monsters= ["goblin","zombie","vampire","werewolf","troll",
           "giant spider","mummy","ghost","wicked fairy","Demon"]
 
 def random_monster():
-    return random.choice(monsters)   
+    return random.choice(monsters)
 
 monster= random_monster()
 
@@ -27,9 +27,8 @@ weapon= random_weapon()
 
 def white_door():
     global whiteDoorEntry
-    print_pause("You enter through the white door")
     print_pause("you look around and you find a "+ weapon +" that you can "
-    "use to defend yourself with against the ", monster)
+    "use to defend yourself with against the "+ monster)
     print_pause("you take it and return back to the hallway you were in")
     global score
     score+=25
@@ -52,7 +51,7 @@ def return_to_hallway():
 def basement_fight():
     global score
     print_pause("would you like to fight or run back up to the hallway?")
-    print_pause("Enter 1 to fight the ",monster)
+    print_pause("Enter 1 to fight the "+ monster)
     print_pause("Enter 2 to run away")
     fight_choice =(int(input("(Enter 1 or 2):")))
     if fight_choice==1: 
@@ -87,7 +86,7 @@ def basement_fight():
             " through the door and out of the house")
             score+=40
             print_pause("you gained 40 points!")
-            print_pause("you have a total score of "+ score +" points!")
+            print_pause("you have a total score of "+ str(score) +" points!")
             print_pause("game ends")
     elif fight_choice==2:
         return_to_hallway()
@@ -95,7 +94,7 @@ def basement_fight():
         print_pause(int(input("(Enter 1,2):")))     
 
 def choose_door():
-    print_pause("what would you like to do")
+    print_pause("what would you like to do?")
     while True:
       try:
             first_choice= (int(input("Enter (1,2 or 3): ")))
@@ -117,17 +116,17 @@ def choose_door():
                 return_to_hallway()
                 break
             elif first_choice==3:
-                print_pause("you enter the basement and go down stairs")
+                print_pause("you enter the basement and go downstairs")
                 print_pause("you come face to face with the "+ monster +" and "
                 "behind it a door to escape")
                 basement_fight()
                 break
             else:
-                global score 
+                global score
                 score-=10
                 print_pause("you lost 10 points for entering a wrong number")
                 print_pause(int(input("Enter 1,2 or 3")))
-      except ValueError: 
+      except ValueError:
                print_pause("Invalid.")
 
 print_pause("You find yourself standing in the hallway of an old house and " \
