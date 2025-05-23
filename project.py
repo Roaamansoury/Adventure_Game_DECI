@@ -123,8 +123,8 @@ def choose_door():
       except ValueError: 
                print("Invalid.")
 
-print("You find yourself standing in the hallway of an old house and you hear" \
-" the sound of a" ,monster, "coming from somewhere in the house")
+print_pause("You find yourself standing in the hallway of an old house and you hear" \
+" the sound of a" + monster + "coming from somewhere in the house")
 print_pause("you look around and you find a plain white door, a wooden chest and a door leading to the basement")
 print_pause("Enter 1 to open the white door")
 print_pause("Enter 2 to check the wooden chest")
