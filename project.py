@@ -3,6 +3,7 @@ import random
 
 whiteDoorEntry = False
 woodenChestEntry = False
+score = 0 
 
 def print_pause(text,pause=2):
     print(text)
@@ -29,13 +30,19 @@ def white_door():
     print_pause("You enter through the white door")
     print("you look around and you find a",weapon,"that you can use to defend yourself with against the",monster)
     print_pause("you take it and return back to the hallway you were in")
+    global score
+    score+=25
+    print("[you gained 25 points!]")
     whiteDoorEntry= True
 
 def wooden_chest():
-     global woodenChestEntry
-     print_pause("You search it until you find a big old-fashioned key that you thought could be useful")
-     print_pause("you take it and return to the hallway")
-     woodenChestEntry= True 
+    global woodenChestEntry
+    print_pause("You search it until you find a big old-fashioned key that you thought could be useful")
+    print_pause("you take it and return to the hallway")
+    global score
+    score+=25
+    print("[you gained 25 points!]")
+    woodenChestEntry= True 
 
 def return_to_hallway():
     choose_door()
@@ -47,17 +54,40 @@ def basement_fight():
     fight_choice =(int(input("(Enter 1 or 2):")))
     if fight_choice==1: 
         if not whiteDoorEntry and not woodenChestEntry:
-            print("you fight it but with no weapon or key to the door you can't escape and the",monster,"kills you")  
+            print("you fight it but with no weapon or key to the door")
+            print("you can't escape and the",monster,"kills you")
+            global score
+            score-=30
+            print("[you lost 30 points!]")
             print_pause("game ends")
         elif not whiteDoorEntry:
-            print("you don't have a weapon and the",monster,"kills you")
+            print("You have the key to escape")
+            global score
+            score+=25
+            print("[you gained 25 points for having the key!]")
+            print("but you don't have a weapon and the",monster,"kills you")
+            global score
+            score-=15
+            print("[you lost 15 points for not having a weapon]")
             print_pause("game ends")
         elif not woodenChestEntry:
-            print("you killed the monster but you don't have a key to open the door and escape")
+            print("you use your",weapon,"to kill the monster")
+            global score
+            score+=25
+            print("[you gained 25 points for killing the monster!]")
+            print_pause("but don't have a key to open the door and escape!")
+            global score
+            score-=15
+            print("[you lost 15 points for not having the key]")
             print_pause("you go back to the hallway")
             return_to_hallway()
         else:
-            print("you kill the monster and escape")        
+            print("with your",weapon,"you hit the monster and kill it")
+            print_pause("you use the key you got to escape through the door and out of the house")
+            global score
+            score+=40
+            print("you gained 40 points!")
+            print("you have a total score of",score,"points!")      
             print("game ends")
     elif fight_choice==2:
         return_to_hallway()
@@ -84,13 +114,17 @@ def choose_door():
                 else:
                     print("there is nothing else here")
                 return_to_hallway()
-                break   
+                break
             elif first_choice==3:
                 print("you enter the basement and go down stairs")
-                print("you come face to face with the",monster,"and behind it a door to escape")  
+                print("you come face to face with the",monster,"and behind it a door to escape")
                 basement_fight()
                 break
-            else: print(int(input("Enter 1,2 or 3")))
+            else:
+                global score 
+                score-=10
+                print("you lost 10 points for entering a wrong number")
+                print(int(input("Enter 1,2 or 3")))
       except ValueError: 
                print("Invalid.")
 
@@ -101,3 +135,4 @@ print_pause("Enter 1 to open the white door")
 print_pause("Enter 2 to check the wooden chest")
 print_pause("Enter 3 to open do down the basement")
 choose_door()
+
