@@ -89,7 +89,7 @@ def basement_fight():
             print_pause("you have a total score of "+ str(score) +" points!")
             print_pause("game ends")
     elif fight_choice==2:
-        return_to_hallway()
+        return_to_hallway() #Fix prompting user to choose what to do
     else:
         print_pause(int(input("(Enter 1,2):")))     
 
@@ -136,5 +136,5 @@ print_pause("you look around and you find a plain white door, " \
 print_pause("Enter 1 to open the white door")
 print_pause("Enter 2 to check the wooden chest")
 print_pause("Enter 3 to open do down the basement")
-choose_door()
+choose_door() 
 
